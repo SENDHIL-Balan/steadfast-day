@@ -53,8 +53,8 @@ function StatCard({
   label: string;
   value: number;
   suffix?: string;
-  hint?: string;
-  icon?: typeof Flame;
+  hint?: string | undefined;
+  icon?: typeof Flame | undefined;
   delay?: number;
 }) {
   return (
@@ -291,7 +291,7 @@ function StatsPage() {
                 </div>
                 <p className="tabular mt-2 text-[0.65rem] text-muted-foreground">
                   {unlocked
-                    ? `Unlocked ${shortDate(unlockedAt.slice(0, 10))}`
+                    ? `Unlocked ${shortDate((unlockedAt ?? "").slice(0, 10))}`
                     : `${Math.min(value, target)} / ${target}`}
                 </p>
               </Panel>
