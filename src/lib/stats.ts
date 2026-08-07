@@ -42,9 +42,10 @@ function averageOf(days: DayRecord[]) {
   return Math.round(sum / days.length);
 }
 
-export function computeStats(days: DayRecord[], today: string): Stats {
+export function computeStats(days: DayRecord[], today: string, streakSince?: string | null): Stats {
   const logged = days.filter((d) => d.tasks.length > 0 && d.date <= today);
-  const byDate = new Map(logged.map((d) => [d.date, d]));
+  const streakDays = streakSince ? logged.filter((d) => d.date >= streakSince) : logged;
+  const byDate = new Map(streakDays.map((d) => [d.date, d]));
   const now = fromKey(today);
 
   // Streaks
@@ -62,7 +63,7 @@ export function computeStats(days: DayRecord[], today: string): Stats {
   let longestStreak = 0;
   let run = 0;
   let previous: string | null = null;
-  for (const day of logged) {
+  for (const day of streakDays) {
     const isConsecutive =
       previous !== null && differenceInCalendarDays(fromKey(day.date), fromKey(previous)) === 1;
     if (dayStatus(day) === "complete") {
@@ -84,7 +85,7 @@ export function computeStats(days: DayRecord[], today: string): Stats {
   return {
     currentStreak,
     longestStreak,
-    todayPercent: dayProgress(byDate.get(today)).percent,
+    todayPercent: dayProgress(logged.find((d) => d.date === today)).percent,
     weekPercent: averageOf(logged.filter((d) => isSameWeek(fromKey(d.date), now, { weekStartsOn: 1 }))),
     monthPercent: averageOf(logged.filter((d) => isSameMonth(fromKey(d.date), now))),
     yearPercent: averageOf(logged.filter((d) => isSameYear(fromKey(d.date), now))),
