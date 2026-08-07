@@ -39,5 +39,6 @@ export function quoteForDay(key: string) {
   const date = fromKey(key);
   const index =
     Math.floor(date.getTime() / 86_400_000 + date.getTimezoneOffset() / -1440) % QUOTES.length;
-  return QUOTES[((index % QUOTES.length) + QUOTES.length) % QUOTES.length];
+  const safe = ((index % QUOTES.length) + QUOTES.length) % QUOTES.length;
+  return QUOTES[safe] ?? QUOTES[0]!;
 }

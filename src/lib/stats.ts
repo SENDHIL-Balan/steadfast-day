@@ -78,6 +78,8 @@ export function computeStats(days: DayRecord[], today: string): Stats {
   const ranked = [...logged].sort(
     (a, b) => dayProgress(b).percent - dayProgress(a).percent || a.date.localeCompare(b.date),
   );
+  const best = ranked.at(0);
+  const worst = ranked.at(-1);
 
   return {
     currentStreak,
@@ -91,12 +93,7 @@ export function computeStats(days: DayRecord[], today: string): Stats {
     totalMissed: logged.reduce((acc, d) => acc + d.tasks.filter((t) => !t.done).length, 0),
     daysLogged: logged.length,
     perfectDays: logged.filter((d) => dayStatus(d) === "complete").length,
-    bestDay: ranked[0] ? { date: ranked[0].date, percent: dayProgress(ranked[0]).percent } : null,
-    worstDay: ranked.length
-      ? {
-          date: ranked[ranked.length - 1].date,
-          percent: dayProgress(ranked[ranked.length - 1]).percent,
-        }
-      : null,
+    bestDay: best ? { date: best.date, percent: dayProgress(best).percent } : null,
+    worstDay: worst ? { date: worst.date, percent: dayProgress(worst).percent } : null,
   };
 }
