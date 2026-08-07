@@ -26,6 +26,8 @@ export interface Settings {
   notificationsEnabled: boolean;
   morningReminder: string; // HH:mm
   nightReminder: string; // HH:mm
+  /** Day key from which streaks are counted (set by "Reset Streak"). */
+  streakResetAt: string | null;
 }
 
 export interface AchievementState {
@@ -48,6 +50,7 @@ export const DEFAULT_SETTINGS: Settings = {
   notificationsEnabled: false,
   morningReminder: "06:00",
   nightReminder: "22:00",
+  streakResetAt: null,
 };
 
 export const ACCENTS: Record<AccentId, { label: string; l: number; c: number; h: number }> = {
