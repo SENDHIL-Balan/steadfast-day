@@ -1,6 +1,14 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { BarChart3, CalendarDays, Moon, Settings as SettingsIcon, Sun, Target } from "lucide-react";
+import {
+  BarChart3,
+  CalendarDays,
+  Flame,
+  Moon,
+  Settings as SettingsIcon,
+  Sun,
+  Target,
+} from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { useDiscipline } from "@/hooks/use-discipline";
@@ -56,7 +64,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
         <div className="flex items-center gap-2">
           <span className="glass hidden items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium sm:flex">
-            <span className="text-primary">🔥</span>
+            <Flame className="h-3.5 w-3.5 text-primary" />
             <span className="tabular">{stats.currentStreak}</span>
             <span className="text-muted-foreground">day streak</span>
           </span>

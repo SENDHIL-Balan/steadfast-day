@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { format } from "date-fns";
+import { PartyPopper } from "lucide-react";
 
 import { Panel } from "@/components/panel";
 import { ProgressRing } from "@/components/progress-ring";
@@ -97,7 +98,10 @@ function TodayPage() {
                   transition={{ type: "spring", stiffness: 320, damping: 24 }}
                   className="w-full rounded-2xl bg-primary/12 px-5 py-4 ring-1 ring-primary/25"
                 >
-                  <p className="text-lg font-semibold">🎉 Mission Complete.</p>
+                  <p className="flex items-center justify-center gap-2 text-lg font-semibold">
+                    <PartyPopper className="h-5 w-5 text-primary" />
+                    Mission Complete.
+                  </p>
                   <p className="text-sm text-muted-foreground">Excellent work.</p>
                 </motion.div>
               )}
