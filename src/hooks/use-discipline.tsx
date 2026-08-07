@@ -1,8 +1,28 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import * as db from "@/lib/db";
-import { msUntilMidnight, todayKey as getTodayKey, tomorrowKey as getTomorrowKey } from "@/lib/date";
-import { ACCENTS, DEFAULT_SETTINGS, type AchievementState, type BackupFile, type DayRecord, type Settings, type Task } from "@/lib/types";
+import {
+  msUntilMidnight,
+  todayKey as getTodayKey,
+  tomorrowKey as getTomorrowKey,
+} from "@/lib/date";
+import {
+  ACCENTS,
+  DEFAULT_SETTINGS,
+  type AchievementState,
+  type BackupFile,
+  type DayRecord,
+  type Settings,
+  type Task,
+} from "@/lib/types";
 import { computeStats, type Stats } from "@/lib/stats";
 import { evaluateAchievements } from "@/lib/achievements";
 
@@ -16,7 +36,11 @@ interface DisciplineContextValue {
   stats: Stats;
   getDay: (date: string) => DayRecord | undefined;
   addTask: (date: string, name: string, notes?: string) => Promise<void>;
-  updateTask: (date: string, id: string, patch: Partial<Pick<Task, "name" | "notes">>) => Promise<void>;
+  updateTask: (
+    date: string,
+    id: string,
+    patch: Partial<Pick<Task, "name" | "notes">>,
+  ) => Promise<void>;
   setTaskDone: (date: string, id: string, done: boolean) => Promise<void>;
   deleteTask: (date: string, id: string) => Promise<void>;
   duplicateTask: (date: string, id: string) => Promise<void>;
@@ -78,14 +102,11 @@ export function DisciplineProvider({ children }: { children: React.ReactNode }) 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
     const schedule = () => {
-      timer = setTimeout(
-        () => {
-          setToday(getTodayKey());
-          setTomorrow(getTomorrowKey());
-          schedule();
-        },
-        msUntilMidnight() + 1000,
-      );
+      timer = setTimeout(() => {
+        setToday(getTodayKey());
+        setTomorrow(getTomorrowKey());
+        schedule();
+      }, msUntilMidnight() + 1000);
     };
     schedule();
     const onVisible = () => {
@@ -139,19 +160,16 @@ export function DisciplineProvider({ children }: { children: React.ReactNode }) 
     void db.writeDay(day);
   }, []);
 
-  const mutateDay = useCallback(
-    async (date: string, mutator: (tasks: Task[]) => Task[]) => {
-      setDays((prev) => {
-        const existing = prev.find((d) => d.date === date) ?? emptyDay(date);
-        const tasks = mutator(existing.tasks).map((task, index) => ({ ...task, order: index }));
-        const updated: DayRecord = { ...existing, tasks, updatedAt: new Date().toISOString() };
-        void db.writeDay(updated);
-        const rest = prev.filter((d) => d.date !== date);
-        return [...rest, updated].sort((a, b) => a.date.localeCompare(b.date));
-      });
-    },
-    [],
-  );
+  const mutateDay = useCallback(async (date: string, mutator: (tasks: Task[]) => Task[]) => {
+    setDays((prev) => {
+      const existing = prev.find((d) => d.date === date) ?? emptyDay(date);
+      const tasks = mutator(existing.tasks).map((task, index) => ({ ...task, order: index }));
+      const updated: DayRecord = { ...existing, tasks, updatedAt: new Date().toISOString() };
+      void db.writeDay(updated);
+      const rest = prev.filter((d) => d.date !== date);
+      return [...rest, updated].sort((a, b) => a.date.localeCompare(b.date));
+    });
+  }, []);
 
   const getDay = useCallback((date: string) => days.find((d) => d.date === date), [days]);
 
@@ -168,7 +186,14 @@ export function DisciplineProvider({ children }: { children: React.ReactNode }) 
       addTask: (date, name, notes = "") =>
         mutateDay(date, (tasks) => [
           ...tasks,
-          { id: newId(), name: name.trim(), notes: notes.trim(), done: false, completedAt: null, order: tasks.length },
+          {
+            id: newId(),
+            name: name.trim(),
+            notes: notes.trim(),
+            done: false,
+            completedAt: null,
+            order: tasks.length,
+          },
         ]),
       updateTask: (date, id, patch) =>
         mutateDay(date, (tasks) => tasks.map((t) => (t.id === id ? { ...t, ...patch } : t))),

@@ -9,7 +9,13 @@ interface Props {
   className?: string;
 }
 
-export function AnimatedCounter({ value, duration = 1, suffix = "", decimals = 0, className }: Props) {
+export function AnimatedCounter({
+  value,
+  duration = 1,
+  suffix = "",
+  decimals = 0,
+  className,
+}: Props) {
   const motionValue = useMotionValue(0);
   const rounded = useTransform(motionValue, (latest) => `${latest.toFixed(decimals)}${suffix}`);
 

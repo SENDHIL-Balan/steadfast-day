@@ -36,7 +36,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 to={item.to}
                 className={cn(
                   "relative rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-                  active ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground",
+                  active
+                    ? "text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {active && (
@@ -61,7 +63,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <button
             type="button"
             aria-label="Toggle theme"
-            onClick={() => void updateSettings({ theme: settings.theme === "dark" ? "light" : "dark" })}
+            onClick={() =>
+              void updateSettings({ theme: settings.theme === "dark" ? "light" : "dark" })
+            }
             className="glass grid size-9 place-items-center rounded-full text-muted-foreground transition-colors hover:text-foreground"
           >
             {settings.theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}

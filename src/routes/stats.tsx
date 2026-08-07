@@ -114,10 +114,28 @@ function StatsPage() {
       <PageTitle title="Statistics" subtitle="Consistency, measured." />
 
       <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-        <StatCard label="Current Streak" value={stats.currentStreak} suffix=" d" icon={Flame} delay={0} />
-        <StatCard label="Longest Streak" value={stats.longestStreak} suffix=" d" icon={Award} delay={0.04} />
+        <StatCard
+          label="Current Streak"
+          value={stats.currentStreak}
+          suffix=" d"
+          icon={Flame}
+          delay={0}
+        />
+        <StatCard
+          label="Longest Streak"
+          value={stats.longestStreak}
+          suffix=" d"
+          icon={Award}
+          delay={0.04}
+        />
         <StatCard label="Today" value={stats.todayPercent} suffix="%" icon={Target} delay={0.08} />
-        <StatCard label="Average" value={stats.averagePercent} suffix="%" icon={TrendingUp} delay={0.12} />
+        <StatCard
+          label="Average"
+          value={stats.averagePercent}
+          suffix="%"
+          icon={TrendingUp}
+          delay={0.12}
+        />
         <StatCard label="This Week" value={stats.weekPercent} suffix="%" delay={0.16} />
         <StatCard label="This Month" value={stats.monthPercent} suffix="%" delay={0.2} />
         <StatCard label="This Year" value={stats.yearPercent} suffix="%" delay={0.24} />
@@ -160,8 +178,21 @@ function StatsPage() {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={weekly}>
                 <CartesianGrid vertical={false} stroke="var(--color-border)" />
-                <XAxis dataKey="label" tickLine={false} axisLine={false} fontSize={11} stroke="var(--color-muted-foreground)" />
-                <YAxis domain={[0, 100]} tickLine={false} axisLine={false} fontSize={11} width={30} stroke="var(--color-muted-foreground)" />
+                <XAxis
+                  dataKey="label"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--color-muted-foreground)"
+                />
+                <YAxis
+                  domain={[0, 100]}
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  width={30}
+                  stroke="var(--color-muted-foreground)"
+                />
                 <Tooltip
                   contentStyle={{
                     background: "var(--popover)",
@@ -189,8 +220,22 @@ function StatsPage() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid vertical={false} stroke="var(--color-border)" />
-                <XAxis dataKey="label" tickLine={false} axisLine={false} fontSize={10} interval={6} stroke="var(--color-muted-foreground)" />
-                <YAxis domain={[0, 100]} tickLine={false} axisLine={false} fontSize={11} width={30} stroke="var(--color-muted-foreground)" />
+                <XAxis
+                  dataKey="label"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={10}
+                  interval={6}
+                  stroke="var(--color-muted-foreground)"
+                />
+                <YAxis
+                  domain={[0, 100]}
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  width={30}
+                  stroke="var(--color-muted-foreground)"
+                />
                 <Tooltip
                   contentStyle={{
                     background: "var(--popover)",
@@ -275,7 +320,9 @@ function StatsPage() {
                   <span
                     className={cn(
                       "grid size-8 shrink-0 place-items-center rounded-xl",
-                      unlocked ? "bg-primary/15 text-primary" : "bg-secondary text-muted-foreground",
+                      unlocked
+                        ? "bg-primary/15 text-primary"
+                        : "bg-secondary text-muted-foreground",
                     )}
                   >
                     <Award className="size-4" />

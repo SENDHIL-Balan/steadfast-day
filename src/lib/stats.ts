@@ -86,7 +86,9 @@ export function computeStats(days: DayRecord[], today: string, streakSince?: str
     currentStreak,
     longestStreak,
     todayPercent: dayProgress(logged.find((d) => d.date === today)).percent,
-    weekPercent: averageOf(logged.filter((d) => isSameWeek(fromKey(d.date), now, { weekStartsOn: 1 }))),
+    weekPercent: averageOf(
+      logged.filter((d) => isSameWeek(fromKey(d.date), now, { weekStartsOn: 1 })),
+    ),
     monthPercent: averageOf(logged.filter((d) => isSameMonth(fromKey(d.date), now))),
     yearPercent: averageOf(logged.filter((d) => isSameYear(fromKey(d.date), now))),
     averagePercent: averageOf(logged),

@@ -146,7 +146,10 @@ function HistoryPage() {
 
         <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t border-hairline pt-4">
           {LEGEND.map((item) => (
-            <span key={item.status} className="flex items-center gap-2 text-xs text-muted-foreground">
+            <span
+              key={item.status}
+              className="flex items-center gap-2 text-xs text-muted-foreground"
+            >
               <span className={cn("size-3 rounded-full border", STATUS_STYLE[item.status])} />
               {item.label}
             </span>
@@ -203,7 +206,9 @@ function HistoryPage() {
                           task.done ? "border-success bg-success" : "border-border",
                         )}
                       >
-                        {task.done && <Check className="size-3 text-background" strokeWidth={3.4} />}
+                        {task.done && (
+                          <Check className="size-3 text-background" strokeWidth={3.4} />
+                        )}
                       </span>
                       <div className="min-w-0 flex-1">
                         <p

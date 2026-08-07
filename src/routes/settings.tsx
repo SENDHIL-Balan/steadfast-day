@@ -46,8 +46,15 @@ export const Route = createFileRoute("/settings")({
 type DangerAction = "clear" | "achievements" | "streak" | null;
 
 function SettingsPage() {
-  const { settings, updateSettings, exportData, importData, clearAllData, resetAchievements, resetStreak } =
-    useDiscipline();
+  const {
+    settings,
+    updateSettings,
+    exportData,
+    importData,
+    clearAllData,
+    resetAchievements,
+    resetStreak,
+  } = useDiscipline();
   const [danger, setDanger] = useState<DangerAction>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -133,7 +140,9 @@ function SettingsPage() {
           <div className="flex items-center justify-between gap-4">
             <div>
               <p className="text-sm font-medium">Theme</p>
-              <p className="text-xs text-muted-foreground">Dark by default. Light when you need it.</p>
+              <p className="text-xs text-muted-foreground">
+                Dark by default. Light when you need it.
+              </p>
             </div>
             <div className="flex rounded-xl bg-secondary p-1">
               {(["dark", "light"] as const).map((mode) => (
@@ -159,7 +168,9 @@ function SettingsPage() {
               <p className="flex items-center gap-2 text-sm font-medium">
                 <Palette className="size-3.5 text-primary" /> Accent colour
               </p>
-              <p className="text-xs text-muted-foreground">Colours the ring, charts and highlights.</p>
+              <p className="text-xs text-muted-foreground">
+                Colours the ring, charts and highlights.
+              </p>
             </div>
             <div className="flex gap-2">
               {(Object.keys(ACCENTS) as AccentId[]).map((id) => {
@@ -266,11 +277,29 @@ function SettingsPage() {
         <h2 className="text-base font-semibold text-destructive">Danger zone</h2>
         <div className="mt-4 flex flex-col divide-y divide-hairline">
           {[
-            { id: "streak" as const, label: "Reset streak", hint: "Start streak counting from today.", icon: RotateCcw },
-            { id: "achievements" as const, label: "Reset achievements", hint: "Lock all achievements again.", icon: RotateCcw },
-            { id: "clear" as const, label: "Clear all data", hint: "Delete every day, task and achievement.", icon: Trash2 },
+            {
+              id: "streak" as const,
+              label: "Reset streak",
+              hint: "Start streak counting from today.",
+              icon: RotateCcw,
+            },
+            {
+              id: "achievements" as const,
+              label: "Reset achievements",
+              hint: "Lock all achievements again.",
+              icon: RotateCcw,
+            },
+            {
+              id: "clear" as const,
+              label: "Clear all data",
+              hint: "Delete every day, task and achievement.",
+              icon: Trash2,
+            },
           ].map((item) => (
-            <div key={item.id} className="flex items-center justify-between gap-4 py-3.5 first:pt-0 last:pb-0">
+            <div
+              key={item.id}
+              className="flex items-center justify-between gap-4 py-3.5 first:pt-0 last:pb-0"
+            >
               <div>
                 <p className="text-sm font-medium">{item.label}</p>
                 <p className="text-xs text-muted-foreground">{item.hint}</p>
