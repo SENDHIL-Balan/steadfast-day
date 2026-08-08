@@ -49,9 +49,18 @@ export function registerServiceWorker() {
     return;
   }
 
-  window.addEventListener("load", () => {
+  const register = () => {
     navigator.serviceWorker.register(SW_URL).catch((error) => {
       console.error("Service worker registration failed", error);
     });
-  });
+  };
+
+  // Registration runs from a post-hydration effect, so the window "load" event
+  // has usually already fired — waiting for it would never register.
+  if (document.readyState === "complete") {
+    register();
+  } else {
+    window.addEventListener("load", register, { once: true });
+  }
+
 }
