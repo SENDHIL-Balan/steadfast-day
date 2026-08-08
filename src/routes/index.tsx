@@ -68,7 +68,7 @@ function TodayPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       >
-        <p className="text-sm font-medium text-primary">{greeting(now ?? undefined)}</p>
+        <p className="text-sm font-medium text-primary">{now ? greeting(now) : "Welcome"}</p>
         <h1 className="mt-1 text-3xl font-semibold sm:text-4xl">
           {now ? format(now, "EEEE") : "Today"}
           <span className="text-muted-foreground">
