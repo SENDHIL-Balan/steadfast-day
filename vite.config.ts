@@ -25,8 +25,10 @@ export default defineConfig({
         manifest: false,
         workbox: {
           globPatterns: ["**/*.{js,css,html,png,svg,ico,webmanifest,woff2}"],
-          navigateFallback: "/",
-          navigateFallbackDenylist: [/^\/~oauth/, /^\/api\//],
+          // The app HTML is server-rendered (no index.html in the client build),
+          // so there is nothing to precache as a navigation fallback. Offline
+          // navigations are served by the NetworkFirst page cache below.
+          navigateFallback: null,
           runtimeCaching: [
             {
               urlPattern: ({ request }) => request.mode === "navigate",
