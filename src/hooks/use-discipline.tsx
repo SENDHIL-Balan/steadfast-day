@@ -179,7 +179,6 @@ export function DisciplineProvider({ children }: { children: React.ReactNode }) 
     await db.writeDay(updated);
   }, []);
 
-
   const getDay = useCallback((date: string) => days.find((d) => d.date === date), [days]);
 
   const value = useMemo<DisciplineContextValue>(

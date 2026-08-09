@@ -39,10 +39,11 @@ async function unregisterAppWorker() {
   // make the page look frozen, so drop its caches as well as its registration.
   if ("caches" in window) {
     const keys = await caches.keys();
-    await Promise.all(keys.filter((key) => key.startsWith("discipline-")).map((key) => caches.delete(key)));
+    await Promise.all(
+      keys.filter((key) => key.startsWith("discipline-")).map((key) => caches.delete(key)),
+    );
   }
 }
-
 
 export function registerServiceWorker() {
   if (typeof window === "undefined" || !("serviceWorker" in navigator)) return;
@@ -70,5 +71,4 @@ export function registerServiceWorker() {
   } else {
     window.addEventListener("load", register, { once: true });
   }
-
 }
