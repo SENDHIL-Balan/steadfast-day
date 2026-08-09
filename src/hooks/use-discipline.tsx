@@ -160,16 +160,25 @@ export function DisciplineProvider({ children }: { children: React.ReactNode }) 
     void db.writeDay(day);
   }, []);
 
+  // The state updater must stay pure: React (and StrictMode in particular) can
+  // invoke it more than once, which previously fired a duplicate IndexedDB write
+  // per keystroke-driven mutation. Next state is computed from a ref instead.
+  const daysRef = useRef(days);
+  daysRef.current = days;
+
   const mutateDay = useCallback(async (date: string, mutator: (tasks: Task[]) => Task[]) => {
-    setDays((prev) => {
-      const existing = prev.find((d) => d.date === date) ?? emptyDay(date);
-      const tasks = mutator(existing.tasks).map((task, index) => ({ ...task, order: index }));
-      const updated: DayRecord = { ...existing, tasks, updatedAt: new Date().toISOString() };
-      void db.writeDay(updated);
-      const rest = prev.filter((d) => d.date !== date);
-      return [...rest, updated].sort((a, b) => a.date.localeCompare(b.date));
-    });
+    const prev = daysRef.current;
+    const existing = prev.find((d) => d.date === date) ?? emptyDay(date);
+    const tasks = mutator(existing.tasks).map((task, index) => ({ ...task, order: index }));
+    const updated: DayRecord = { ...existing, tasks, updatedAt: new Date().toISOString() };
+    const next = [...prev.filter((d) => d.date !== date), updated].sort((a, b) =>
+      a.date.localeCompare(b.date),
+    );
+    daysRef.current = next;
+    setDays(next);
+    await db.writeDay(updated);
   }, []);
+
 
   const getDay = useCallback((date: string) => days.find((d) => d.date === date), [days]);
 
