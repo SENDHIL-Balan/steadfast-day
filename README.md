@@ -1,12 +1,12 @@
 # Daily Resolve
 
-Create a modern, premium-quality Progressive Web App (PWA) called **Discipline**.
+Create a modern, premium-quality Progressive Web App (PWA) called **CueX**.
 
 # Purpose
 
 This is NOT a normal to-do list.
 
-This application is my personal daily discipline tracker.
+This application is my personal daily cuex tracker.
 
 Every night before sleeping, I manually create my tasks for the next day.
 
@@ -22,7 +22,7 @@ There are NO priorities like:
 
 Every task has equal importance.
 
-The application should focus on discipline, consistency, and daily execution.
+The application should focus on cuex, consistency, and daily execution.
 
 DO NOT add AI suggestions, recurring tasks, smart scheduling, automatic task generation, or categories.
 
@@ -486,7 +486,7 @@ The design should be beautiful enough that opening it every morning feels motiva
 
 The focus is not productivity hacks.
 
-The focus is daily discipline.
+The focus is daily cuex.
 
 Every task is manually planned by me every night.
 

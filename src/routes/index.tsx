@@ -18,16 +18,16 @@ import { dayProgress } from "@/lib/stats";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Today — Discipline Tracker" },
+      { title: "Today — CueX" },
       {
         name: "description",
         content:
           "Your daily mission board. Track every mandatory task, watch your progress ring fill, and keep the streak alive.",
       },
-      { property: "og:title", content: "Today — Discipline Tracker" },
+      { property: "og:title", content: "Today — CueX" },
       {
         property: "og:description",
-        content: "Your daily mission board for manual, equal-priority discipline tracking.",
+        content: "Your daily mission board for manual, equal-priority tracking.",
       },
     ],
   }),

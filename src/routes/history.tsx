@@ -20,13 +20,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/history")({
   head: () => ({
     meta: [
-      { title: "History — Discipline Tracker" },
+      { title: "History — CueX" },
       {
         name: "description",
         content:
           "Every logged day, kept forever. Browse a colour-coded calendar and reopen any day's tasks, notes and completion times.",
       },
-      { property: "og:title", content: "History — Discipline Tracker" },
+      { property: "og:title", content: "History — CueX" },
       {
         property: "og:description",
         content: "A colour-coded calendar of every day you have logged.",

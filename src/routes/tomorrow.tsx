@@ -10,13 +10,13 @@ import { prettyDate } from "@/lib/date";
 export const Route = createFileRoute("/tomorrow")({
   head: () => ({
     meta: [
-      { title: "Plan Tomorrow — Discipline Tracker" },
+      { title: "Plan Tomorrow — CueX" },
       {
         name: "description",
         content:
           "Write tomorrow's mission tonight. Tasks stay hidden until midnight, then become your day.",
       },
-      { property: "og:title", content: "Plan Tomorrow — Discipline Tracker" },
+      { property: "og:title", content: "Plan Tomorrow — CueX" },
       {
         property: "og:description",
         content: "Write tomorrow's mission tonight; it activates automatically at midnight.",

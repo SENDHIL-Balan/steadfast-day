@@ -27,13 +27,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/settings")({
   head: () => ({
     meta: [
-      { title: "Settings — Discipline Tracker" },
+      { title: "Settings — CueX" },
       {
         name: "description",
         content:
-          "Theme, accent colour, reminders, JSON backup and restore, and destructive resets for your local discipline data.",
+          "Theme, accent colour, reminders, JSON backup and restore, and destructive resets for your local CueX data.",
       },
-      { property: "og:title", content: "Settings — Discipline Tracker" },
+      { property: "og:title", content: "Settings — CueX" },
       {
         property: "og:description",
         content: "Theme, accent, reminders and local data backup controls.",
@@ -81,7 +81,7 @@ function SettingsPage() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `discipline-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    link.download = `cuex-backup-${new Date().toISOString().slice(0, 10)}.json`;
     link.click();
     URL.revokeObjectURL(url);
     toast.success("Backup exported.");
@@ -97,7 +97,7 @@ function SettingsPage() {
       toast.success("Backup restored.");
     } catch (error) {
       console.error(error);
-      toast.error("That file is not a valid Discipline backup.");
+      toast.error("That file is not a valid CueX backup.");
     }
   };
 

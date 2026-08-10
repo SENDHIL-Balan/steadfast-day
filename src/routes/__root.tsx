@@ -84,17 +84,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "viewport",
         content: "width=device-width, initial-scale=1, viewport-fit=cover",
       },
-      { title: "Discipline — Daily Discipline Tracker" },
+      { title: "CueX — Daily Tracker" },
       {
         name: "description",
         content:
-          "A private, offline-first daily discipline tracker. Plan every task manually tonight, execute tomorrow, keep the streak alive.",
+          "A private, offline-first daily tracker. Plan every task manually tonight, execute tomorrow, keep the streak alive.",
       },
       { name: "theme-color", content: "#0b0d11" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
-      { name: "apple-mobile-web-app-title", content: "Discipline" },
+      { name: "apple-mobile-web-app-title", content: "CueX" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
-      { property: "og:title", content: "Discipline — Daily Discipline Tracker" },
+      { property: "og:title", content: "CueX — Daily Tracker" },
       {
         property: "og:description",
         content: "Plan every task manually tonight, execute tomorrow, keep the streak alive.",

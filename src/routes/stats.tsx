@@ -26,13 +26,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/stats")({
   head: () => ({
     meta: [
-      { title: "Statistics — Discipline Tracker" },
+      { title: "Statistics — CueX" },
       {
         name: "description",
         content:
-          "Streaks, weekly and yearly completion, a GitHub-style heatmap and unlocked achievements for your daily discipline.",
+          "Streaks, weekly and yearly completion, a GitHub-style heatmap and unlocked achievements for your daily tracking.",
       },
-      { property: "og:title", content: "Statistics — Discipline Tracker" },
+      { property: "og:title", content: "Statistics — CueX" },
       {
         property: "og:description",
         content: "Streaks, completion rates, graphs and achievements at a glance.",
