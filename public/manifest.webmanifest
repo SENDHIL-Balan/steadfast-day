@@ -1,7 +1,7 @@
 {
-  "name": "Discipline — Daily Discipline Tracker",
-  "short_name": "Discipline",
-  "description": "A private, offline-first daily discipline tracker. Plan tonight, execute tomorrow.",
+  "name": "CueX — Daily Tracker",
+  "short_name": "CueX",
+  "description": "A private, offline-first daily tracker. Plan tonight, execute tomorrow.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

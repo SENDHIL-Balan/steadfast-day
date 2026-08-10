@@ -46,6 +46,6 @@ export function scheduleReminders(times: { morning: string; night: string }) {
     timers.push(setTimeout(fire, msUntil(time)));
   };
 
-  plan(times.morning, "Discipline", "Your mission starts now.");
-  plan(times.night, "Discipline", "Plan tomorrow before sleeping.");
+  plan(times.morning, "CueX", "Your mission starts now.");
+  plan(times.night, "CueX", "Plan tomorrow before sleeping.");
 }

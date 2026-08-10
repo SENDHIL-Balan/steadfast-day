@@ -32,7 +32,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <span className="grid size-9 place-items-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/25 transition-transform group-hover:scale-105">
             <Target className="size-4.5" strokeWidth={2.4} />
           </span>
-          <span className="text-[0.95rem] font-semibold tracking-tight">Discipline</span>
+          <span className="text-[0.95rem] font-semibold tracking-tight">CueX</span>
         </Link>
 
         <nav className="glass hidden items-center gap-1 rounded-full p-1 md:flex">

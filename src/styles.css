@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Discipline design system.
+ * CueX design system.
  * Dark-first, glassmorphic, Linear/Arc inspired.
  * All colors use oklch. Accent is swappable at runtime via --accent-h/-c/-l.
  */
