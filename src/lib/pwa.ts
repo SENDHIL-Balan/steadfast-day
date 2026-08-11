@@ -50,13 +50,21 @@ export function registerServiceWorker() {
 
   const inIframe = window.self !== window.top;
   const swOff = new URL(window.location.href).searchParams.get("sw") === "off";
+  // Inside an Android/iOS WebView the app is served from file:// or
+  // capacitor://, where service workers are unsupported and registering throws.
+  const unsupportedOrigin = !["https:", "http:"].includes(window.location.protocol);
   const refused =
-    !import.meta.env.PROD || inIframe || swOff || isPreviewHost(window.location.hostname);
+    !import.meta.env.PROD ||
+    inIframe ||
+    swOff ||
+    unsupportedOrigin ||
+    isPreviewHost(window.location.hostname);
 
   if (refused) {
     void unregisterAppWorker();
     return;
   }
+
 
   const register = () => {
     navigator.serviceWorker.register(SW_URL).catch((error) => {
