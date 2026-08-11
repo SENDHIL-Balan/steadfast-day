@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "build:spa": "vite build --config vite.spa.config.ts"
+    "build:spa": "vite build --config vite.spa.config.ts",
+    "build:apk": "vite build && vite build --config vite.spa.config.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
