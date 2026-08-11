@@ -1,8 +1,10 @@
 import { QueryClient } from "@tanstack/react-query";
-import { createRouter } from "@tanstack/react-router";
+import { createRouter, type RouterHistory } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 
-export const getRouter = () => {
+// `history` is only passed by the standalone SPA entry (src/main.tsx), which
+// needs hash history so routing works from a file:// WebView (Android APK).
+export const getRouter = (history?: RouterHistory) => {
   const queryClient = new QueryClient();
 
   const router = createRouter({
@@ -10,6 +12,7 @@ export const getRouter = () => {
     context: { queryClient },
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
+    ...(history ? { history } : {}),
   });
 
   return router;
