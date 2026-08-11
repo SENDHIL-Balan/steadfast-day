@@ -174,6 +174,22 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Android WebView (and low-end mobile GPUs) stall badly when large
+   backdrop-filter layers are composited during a route transition — which made
+   tapping the bottom tab bar look like a freeze in the packaged APK. Keep the
+   glass look, but with a much cheaper blur on touch devices. */
+@media (pointer: coarse), (max-width: 768px) {
+  .glass {
+    backdrop-filter: blur(8px);
+  }
+
+  .glass-strong {
+    backdrop-filter: blur(10px);
+  }
+}
+
+
+
 @layer base {
   * {
     border-color: var(--color-border);
