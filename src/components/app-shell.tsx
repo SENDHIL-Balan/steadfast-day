@@ -26,7 +26,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <div className="relative z-10 mx-auto flex min-h-dvh w-full max-w-6xl flex-col px-4 pb-28 pt-5 sm:px-6 md:pb-10">
+    <div className="relative z-10 mx-auto flex min-h-dvh w-full max-w-6xl flex-col px-4 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-5 sm:px-6 md:pb-10">
       <header className="mb-8 flex items-center justify-between gap-4">
         <Link to="/" className="group flex items-center gap-2.5">
           <span className="grid size-9 place-items-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/25 transition-transform group-hover:scale-105">
@@ -83,7 +83,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
       <main className="flex-1">{children}</main>
 
-      <nav className="glass-strong fixed inset-x-3 bottom-3 z-30 flex items-center justify-between rounded-2xl p-1.5 md:hidden">
+      <nav className="glass-strong fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-30 flex items-center justify-between rounded-2xl p-1.5 md:hidden">
         {NAV.map((item) => {
           const active = pathname === item.to;
           const Icon = item.icon;
